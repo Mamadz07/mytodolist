@@ -1,55 +1,103 @@
-<script>
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcomeFallback from '$lib/images/svelte-welcome.png';
-</script>
+
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>Mytodolist</title>
+	<meta name="description" content="About this app" />
 </svelte:head>
 
-<section>
-	<h1>
-		<span class="welcome">
-			<picture>
-				<source srcset={welcome} type="image/webp" />
-				<img src={welcomeFallback} alt="Welcome" />
-			</picture>
-		</span>
+<script lang="ts">
+  let taskInput: string = "";
+  let tasks: string[] = [];
 
-	
-	</h1>
-	<h2 style="font-family: 'Poppins', sans-serif; color: #4a6fa5; font-weight: 300;">
-   "Mulai harimu dengan rencana dan akhiri dengan kenangan manis."
-</h2>
-</section>
+  function addTask(): void {
+    if (!taskInput.trim()) return;
+    tasks = [...tasks, taskInput];
+    taskInput = "";
+  }
+
+  function removeTask(index: number): void {
+    tasks.splice(index, 1);
+    tasks = [...tasks];
+  }
+
+  function handleKeypress(e: KeyboardEvent): void {
+    if (e.key === "Enter") addTask();
+  }
+</script>
+
+<div class="todo-container">
+  <h1>My To Do List</h1>
+
+  <input
+    type="text"
+    placeholder="Masukan Tugas"
+    bind:value={taskInput}
+    on:keypress={handleKeypress}
+  />
+
+  <button on:click={addTask}>Tambah</button>
+
+  <ul>
+    {#each tasks as task, index}
+      <li>
+        {task}
+        <button on:click={() => removeTask(index)}>Hapus</button>
+      </li>
+    {/each}
+  </ul>
+</div>
 
 <style>
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 0.6;
-	}
+  .todo-container {
+    max-width: 600px;
+    margin: 100px auto;
+    padding: 20px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: white;
+  }
 
-	h1 {
-		width: 100%;
-	}
+  h1 {
+    text-align: center;
+  }
 
-	.welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
+  input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 6px;
+  }
 
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
-	}
+  button {
+    width: 100%;
+    background-color: rgb(3, 137, 182);
+    color: white;
+    cursor: pointer;
+    border: none;
+    padding: 6px;
+  }
+
+  button:hover {
+    background-color: rgb(1, 69, 117);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    background-color: #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  li button {
+    margin-left: auto;
+    width: auto;
+    background: red;
+  }
 </style>
