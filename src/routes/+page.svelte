@@ -1,5 +1,4 @@
 <script>
-	import Counter from './Counter.svelte';
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcomeFallback from '$lib/images/svelte-welcome.png';
 </script>
@@ -18,14 +17,11 @@
 			</picture>
 		</span>
 
-		to your new<br />SvelteKit app
+	
 	</h1>
-
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
-
-	<Counter />
+	<h2 style="font-family: 'Poppins', sans-serif; color: #4a6fa5; font-weight: 300;">
+   "Mulai harimu dengan rencana dan akhiri dengan kenangan manis."
+</h2>
 </section>
 
 <style>

@@ -1,13 +1,13 @@
 <script>
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
-	import logo from '$lib/images/svelte-logo.svg';
+	import logo from '$lib/images/svelte-logo.png';
 	import github from '$lib/images/github.svg';
 </script>
 
 <header>
 	<div class="corner">
-		<a href="https://svelte.dev/docs/kit">
+		<a id="rr" href="https://genshin.hoyoverse.com/en/">
 			<img src={logo} alt="SvelteKit" />
 		</a>
 	</div>
@@ -21,10 +21,10 @@
 				<a href={resolve('/')}>Home</a>
 			</li>
 			<li aria-current={page.url.pathname === '/about' ? 'page' : undefined}>
-				<a href={resolve('/about')}>About</a>
+				<a href={resolve('/about')}>Mytodolist</a>
 			</li>
 			<li aria-current={page.url.pathname.startsWith('/sverdle') ? 'page' : undefined}>
-				<a href={resolve('/sverdle')}>Sverdle</a>
+				<a href={resolve('/sverdle')}>Memorycard</a>
 			</li>
 		</ul>
 		<svg viewBox="0 0 2 3" aria-hidden="true">
@@ -59,9 +59,10 @@
 	}
 
 	.corner img {
-		width: 2em;
-		height: 2em;
+		width: 5em;
+		height: 3em;
 		object-fit: contain;
+		
 	}
 
 	nav {
@@ -69,7 +70,12 @@
 		justify-content: center;
 		--background: rgba(255, 255, 255, 0.7);
 	}
-
+	#rr{
+		width: 5em;
+		height: 5em;
+		display: block;
+		
+	}
 	svg {
 		width: 2em;
 		height: 3em;
